@@ -1,7 +1,8 @@
-import Styles from '../styles/style.module.scss'
-import Link from 'next/link'
+import Styles from "../styles/style.module.scss";
+import Link from "next/link";
+import Search from "./Search";
 const Header = () => {
-  const { header, logo } = Styles
+  const { header, logo } = Styles;
   return (
     <header className={header}>
       <div className={logo}>
@@ -9,7 +10,7 @@ const Header = () => {
           <a>Dj Events</a>
         </Link>
       </div>
-
+      <Search />
       <nav>
         <ul>
           <li>
@@ -20,7 +21,7 @@ const Header = () => {
         </ul>
       </nav>
     </header>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
