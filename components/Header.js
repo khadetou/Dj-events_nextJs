@@ -18,6 +18,11 @@ const Header = () => {
               <a>Events</a>
             </Link>
           </li>
+          <li>
+            <Link href="/events/add">
+              <a>Add event</a>
+            </Link>
+          </li>
         </ul>
       </nav>
     </header>
