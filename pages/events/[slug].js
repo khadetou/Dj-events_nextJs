@@ -42,7 +42,7 @@ const EventPage = ({ data: [event] }) => {
     <Layout>
       <div className={evt}>
         <div className={controls}>
-          <Link href={`/events/edit/${slug}`}>
+          <Link href={`/events/edit/${id}`}>
             <a>
               <FaPencilAlt /> Edit Event
             </a>
