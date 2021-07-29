@@ -1,9 +1,12 @@
 import Link from "next/link";
+import { useRouter } from "next/router";
 import Image from "next/image";
 import { FaTimes, FaPencilAlt } from "react-icons/fa";
 import Layout from "@/components/Layout";
 import { API_URL } from "@/config/index";
 import Styles from "@/styles/style.module.scss";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const EventPage = ({ data: [event] }) => {
   const { event: evt, controls, delete: suppress, image: img, back } = Styles;
   const {
@@ -16,10 +19,24 @@ const EventPage = ({ data: [event] }) => {
     description,
     venue,
     address,
+    id,
   } = event;
 
-  const deleteEvent = (e) => {
-    console.log("Deleted");
+  const router = useRouter();
+  const deleteEvent = async (e) => {
+    if (confirm("Are you sure ??")) {
+      const res = await fetch(`${API_URL}/events/${id}`, {
+        method: "DELETE",
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        toast.error(data.message);
+      } else {
+        router.push("/events");
+      }
+    }
   };
   return (
     <Layout>
@@ -39,6 +56,7 @@ const EventPage = ({ data: [event] }) => {
         </span>
       </div>
       <h1>{name}</h1>
+      <ToastContainer />
       {image && (
         <div className={img}>
           <Image
