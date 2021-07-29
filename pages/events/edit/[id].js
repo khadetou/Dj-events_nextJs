@@ -8,6 +8,7 @@ import Layout from "@/components/Layout";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/style.module.scss";
 import { ToastContainer, toast } from "react-toastify";
+import Modal from "@/components/Modal";
 import "react-toastify/dist/ReactToastify.css";
 
 const editEventPage = ({ event }) => {
@@ -24,6 +25,8 @@ const editEventPage = ({ event }) => {
   const [imagePreview, setImagePreview] = useState(
     event.image ? event.image.formats.thumbnail.url : null
   );
+
+  const [showModal, setShowModal] = useState(false);
   const router = useRouter();
 
   const submitHandler = async (e) => {
@@ -149,16 +152,20 @@ const editEventPage = ({ event }) => {
 
       <div>
         <button
-          className="btn-secondary"
+          className="btn-secondary btn-icon"
           style={{
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
           }}
+          onClick={() => setShowModal(true)}
         >
           <FaImage style={{ marginRight: "5px" }} /> Set Image
         </button>
       </div>
+      <Modal show={showModal} onClose={() => setShowModal(false)}>
+        Image Upload
+      </Modal>
     </Layout>
   );
 };
