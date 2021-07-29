@@ -15,11 +15,11 @@ export default function Modal({ show, onClose, children, title }) {
     onClose();
   };
 
-  const { overlay, modal, header, body } = styles;
+  const { overlay, modal, headerm, body } = styles;
   const modalContent = show ? (
     <div className={overlay}>
       <div className={modal}>
-        <div className={header}>
+        <div className={headerm}>
           <a href="#" onClick={handleClose}>
             <FaTimes />
           </a>
