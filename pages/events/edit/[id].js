@@ -9,6 +9,7 @@ import { API_URL } from "@/config/index";
 import styles from "@/styles/style.module.scss";
 import { ToastContainer, toast } from "react-toastify";
 import Modal from "@/components/Modal";
+import ImageUpload from "@/components/ImageUpload";
 import "react-toastify/dist/ReactToastify.css";
 
 const editEventPage = ({ event }) => {
@@ -56,6 +57,13 @@ const editEventPage = ({ event }) => {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setValue({ ...values, [name]: value });
+  };
+
+  const imageUploaded = async (e) => {
+    const res = await fetch(`${API_URL}/events/${event.id}`);
+    const data = await res.json();
+    setImagePreview(data.image.formats.thumbnail.url);
+    setShowModal(false);
   };
   const { grid, form } = styles;
   return (
@@ -164,7 +172,7 @@ const editEventPage = ({ event }) => {
         </button>
       </div>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        Image Upload
+        <ImageUpload evtId={event.id} ImageUploaded={imageUploaded} />
       </Modal>
     </Layout>
   );
