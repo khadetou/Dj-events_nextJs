@@ -8,9 +8,9 @@ import Layout from "@/components/Layout";
 import { API_URL } from "@/config/index";
 import styles from "@/styles/style.module.scss";
 import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Modal from "@/components/Modal";
 import ImageUpload from "@/components/ImageUpload";
-import "react-toastify/dist/ReactToastify.css";
 
 const editEventPage = ({ event }) => {
   const [values, setValue] = useState({
@@ -42,7 +42,7 @@ const editEventPage = ({ event }) => {
     const res = await fetch(`${API_URL}/events/${event.id}`, {
       method: "PUT",
       headers: {
-        "Content-type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(values),
     });
@@ -180,10 +180,10 @@ const editEventPage = ({ event }) => {
 
 export default editEventPage;
 
-export async function getServerSideProps({ params: { id }, req }) {
+export async function getServerSideProps({ params: { id } }) {
   const res = await fetch(`${API_URL}/events/${id}`);
   const event = await res.json();
-
+  console.log(event);
   return {
     props: {
       event,
