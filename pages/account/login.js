@@ -1,18 +1,21 @@
 import { FaUser } from "react-icons/fa";
 import { useState, useEffect, useContext } from "react";
+import AuthContext from "@/context/AuthContext";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import styles from "@/styles/style.module.scss";
 import Layout from "@/components/Layout";
 import Link from "next/link";
+
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { login, error } = useContext(AuthContext);
   const { auth } = styles;
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log({ email, password });
+    login({ email, password });
   }
   return (
     <Layout title="User Log In">
