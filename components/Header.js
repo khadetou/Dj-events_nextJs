@@ -1,4 +1,5 @@
-import Styles from "../styles/style.module.scss";
+import { FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import Styles from "@/styles/style.module.scss";
 import Link from "next/link";
 import Search from "./Search";
 const Header = () => {
@@ -21,6 +22,13 @@ const Header = () => {
           <li>
             <Link href="/events/add">
               <a>Add event</a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/account/login">
+              <a className="btn-secondary btn-icon">
+                <FaSignInAlt /> Log In
+              </a>
             </Link>
           </li>
         </ul>
