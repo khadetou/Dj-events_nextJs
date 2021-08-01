@@ -41,7 +41,7 @@ const Header = () => {
                   className="btn-secondary btn-icon"
                   onClick={() => logout()}
                 >
-                  <FaSingOutAlt /> Logout
+                  <FaSignOutAlt /> Logout
                 </button>
               </li>
             </>
