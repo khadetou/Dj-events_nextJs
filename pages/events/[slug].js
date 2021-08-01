@@ -38,6 +38,7 @@ const EventPage = ({ data: [event] }) => {
       }
     }
   };
+
   return (
     <Layout>
       <div className={evt}>

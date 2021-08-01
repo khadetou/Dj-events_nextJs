@@ -48,7 +48,7 @@ const editEventPage = ({ event }) => {
     });
 
     if (!res.ok) {
-      res.error("Something went wrong");
+      toast.error("Something went wrong");
     } else {
       const evt = await res.json();
       router.push(`/events/${evt.slug}`);
@@ -180,7 +180,7 @@ const editEventPage = ({ event }) => {
 
 export default editEventPage;
 
-export async function getServerSideProps({ params: { id } }) {
+export async function getServerSideProps({ params: { id }, req }) {
   const res = await fetch(`${API_URL}/events/${id}`);
   const event = await res.json();
 
