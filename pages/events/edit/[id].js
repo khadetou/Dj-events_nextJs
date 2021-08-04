@@ -1,5 +1,6 @@
 import moment from "moment";
 import { FaImage } from "react-icons/fa";
+import { parseCookies } from "@/helpers/index";
 import { useState } from "react";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -12,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from "@/components/Modal";
 import ImageUpload from "@/components/ImageUpload";
 
-const editEventPage = ({ event }) => {
+const editEventPage = ({ event, token }) => {
   const [values, setValue] = useState({
     name: event.name,
     performers: event.performers,
@@ -43,11 +44,15 @@ const editEventPage = ({ event }) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(values),
     });
 
     if (!res.ok) {
+      if (res.status === 403 || res.status === 401) {
+        toast.error("No token included");
+      }
       toast.error("Something went wrong");
     } else {
       const evt = await res.json();
@@ -180,13 +185,15 @@ const editEventPage = ({ event }) => {
 
 export default editEventPage;
 
-export async function getServerSideProps({ params: { id } }) {
+export async function getServerSideProps({ params: { id }, req }) {
+  const { token } = parseCookies(req);
   const res = await fetch(`${API_URL}/events/${id}`);
   const event = await res.json();
   console.log(event);
   return {
     props: {
       event,
+      token,
     },
   };
 }
