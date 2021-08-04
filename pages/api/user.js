@@ -1,7 +1,7 @@
 import { API_URL } from "@/config/index";
 import cookie from "cookie";
 
-export default async (req, res) => {
+export default async function User(req, res) {
   if (req.method === "GET") {
     const cookies = cookie.parse(req.headers.cookie);
 
@@ -30,4 +30,4 @@ export default async (req, res) => {
     res.setHeader("Allow", ["GET"]);
     res.status(405).json({ message: `Method ${req.method} not allowed` });
   }
-};
+}

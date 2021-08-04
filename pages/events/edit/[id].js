@@ -13,7 +13,7 @@ import "react-toastify/dist/ReactToastify.css";
 import Modal from "@/components/Modal";
 import ImageUpload from "@/components/ImageUpload";
 
-const editEventPage = ({ event, token }) => {
+const EditEventPage = ({ event, token }) => {
   const [values, setValue] = useState({
     name: event.name,
     performers: event.performers,
@@ -156,7 +156,7 @@ const editEventPage = ({ event, token }) => {
       </form>
       <h2>Event image</h2>
       {imagePreview ? (
-        <Image src={imagePreview} height={100} width={170} />
+        <Image src={imagePreview} height={100} width={170} alt="event image" />
       ) : (
         <div>
           <p>No image Uploaded</p>
@@ -187,7 +187,7 @@ const editEventPage = ({ event, token }) => {
   );
 };
 
-export default editEventPage;
+export default EditEventPage;
 
 export async function getServerSideProps({ params: { id }, req }) {
   const { token } = parseCookies(req);

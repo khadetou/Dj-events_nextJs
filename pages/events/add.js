@@ -8,7 +8,7 @@ import styles from "@/styles/style.module.scss";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-const addEventPage = ({ token }) => {
+const AddEventPage = ({ token }) => {
   const [values, setValue] = useState({
     name: "",
     performers: "",
@@ -141,7 +141,7 @@ const addEventPage = ({ token }) => {
   );
 };
 
-export default addEventPage;
+export default AddEventPage;
 
 export async function getServerSideProps({ req }) {
   const { token } = parseCookies(req);
