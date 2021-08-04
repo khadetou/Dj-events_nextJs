@@ -177,7 +177,11 @@ const editEventPage = ({ event, token }) => {
         </button>
       </div>
       <Modal show={showModal} onClose={() => setShowModal(false)}>
-        <ImageUpload evtId={event.id} ImageUploaded={imageUploaded} />
+        <ImageUpload
+          evtId={event.id}
+          ImageUploaded={imageUploaded}
+          token={token}
+        />
       </Modal>
     </Layout>
   );
@@ -189,7 +193,7 @@ export async function getServerSideProps({ params: { id }, req }) {
   const { token } = parseCookies(req);
   const res = await fetch(`${API_URL}/events/${id}`);
   const event = await res.json();
-  console.log(event);
+
   return {
     props: {
       event,
