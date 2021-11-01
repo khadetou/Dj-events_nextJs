@@ -19,8 +19,6 @@ const AddEventPage = ({ token }) => {
     description: "",
   });
 
-  const router = useRouter();
-
   const submitHandler = async (e) => {
     e.preventDefault();
     const hasEmptyFields = Object.values(values).some(
@@ -46,7 +44,7 @@ const AddEventPage = ({ token }) => {
       toast.error("Something went wrong");
     } else {
       const evt = await res.json();
-      router.push(`/events/${evt.slug}`);
+      toast.success("Data sent");
     }
   };
   const handleInputChange = (e) => {
