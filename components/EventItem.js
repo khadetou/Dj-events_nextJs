@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 const EventItem = ({ evt }) => {
   const { event, img, info, link } = Styles;
+  console.log(evt.image);
   return (
     <div className={event}>
       <div className={img}>
